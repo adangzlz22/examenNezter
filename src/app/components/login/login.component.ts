@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
   success = false;
-  erorr = 'Usuario o contraseña incorrecta.';
+  error = 'Usuario o contraseña incorrecta.';
   constructor(private route: Router
               ,private userService: ApiService
               ) { }
