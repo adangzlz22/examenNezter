@@ -122,10 +122,21 @@ export class UsuariosComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-  post(){
+  post(): void{
     if(this.user.idUsuario){
-      const objModel = this.form.value;
-      this.userService.post('Login/EditarUsuario',objModel).subscribe( result => {
+     let obj = {
+      IdUsuario: this.user.idUsuario,
+       Nombre: this.form.get('Nombre')?.value,
+       PassName: this.form.get('PassName')?.value,
+       Direccion: this.form.get('PassName')?.value,
+       Telefono: this.form.get('PassName')?.value,
+       CodigoPostal: this.form.get('PassName')?.value,
+       TipoUsuario: this.form.get('PassName')?.value,
+       idPais: this.form.get('idPais')?.value,
+       idEstado: this.form.get('idEstado')?.value,
+       idCiudad: this.form.get('idCiudad')?.value,
+     };    
+      this.userService.post('Login/EditarUsuario',obj).subscribe( result => {
         this.states = JSON.parse(result['Model']);
         this.getUsers();
       });
