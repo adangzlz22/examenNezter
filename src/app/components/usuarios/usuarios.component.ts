@@ -62,6 +62,7 @@ export class UsuariosComponent implements OnInit {
    Direccion : user.Direccion,
    Telefono : user.Telefono,
    CodigoPostal:user.CodigoPostal,
+   TipoUsuario:user.TipoUsuario,
    idPais : user.idPais,
    idEstado : user.idEstado,
    idCiudad : user.idCiudad,
