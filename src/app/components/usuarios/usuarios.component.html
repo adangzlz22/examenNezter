@@ -47,7 +47,7 @@
     <input type="text" class="form-control" id="name" formControlName="UserName" aria-describedby="name" placeholder="Enter name">
     <label for="city">Ciudad</label>
     <select class="form-select" aria-label="Default select example"  formControlName="idCiudad">
-        <option *ngFor="let city from cities">{{city.name}}</option>
+        <option *ngFor="let city of cities" [value]="city.value">{{city.text}}</option>
     </select>    
     <label for="state">Estado</label>
     <input type="text" class="form-control" id="state" formControlName="idEstado"  aria-describedby="emailHelp" placeholder="Enter email">
