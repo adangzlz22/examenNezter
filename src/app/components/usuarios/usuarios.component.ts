@@ -13,7 +13,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   title = 'Create User';
   typeOfAction = 'Create User';
   closeResult:string = '';
-  users = [];
+  users: any = [];
 
   subscriptions: Subscription[] = [];
 
@@ -27,6 +27,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     TipoUsuario :new FormControl(''),
     idPais : new FormControl(''),
     idEstado : new FormControl(''),
+    idCiudad : new FormControl(''),
+
   });
 
   constructor(private route: Router,private userService: ApiService,private modalService: NgbModal ) { }
