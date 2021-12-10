@@ -46,7 +46,7 @@
     <label for="name">Username</label>
     <input type="text" class="form-control" id="name" formControlName="UserName" aria-describedby="name" placeholder="Enter name">
     <label for="city">Estado</label>
-    <select class="form-select" aria-label="Default select example" (change)="onChange($event.target.value)"  formControlName="idEstado">
+    <select class="form-select" aria-label="Default select example" (change)="onChange()"  formControlName="idEstado">
         <option *ngFor="let state of states" [value]="state.value">{{state.text}}</option>
     </select>
     <label for="city">Ciudad</label>

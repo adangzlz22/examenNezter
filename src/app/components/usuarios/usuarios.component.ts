@@ -82,8 +82,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       this.states = JSON.parse(result['Model']);
     });
   }
-  onChange(value:any) {
-    this.getCities(value);
+  onChange() {
+    this.getCities(this.form.get('idEstado')?.value);
   }
 
   private getDismissReason(reason: any): string {
