@@ -9,19 +9,22 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class NavbarComponent implements OnInit {
 
-  isLoged:any = false;
+  isLogged:any = false;
   constructor(private route: Router
               ,private service: ApiService) { }
 
 
   ngOnInit(): void {
-    this.isLoged=this.service.isLogged;
+    const token = localStorage.getItem('token');
+    if(!token) {this.isLogged = true}else{
+      this.isLogged = false;
+    }
+
   }
-
-
-  CerrarSesion(){
-    this.isLoged=false;
+  logOut(){
+    this.isLogged=false;
     this.service.isLogged=false;
+    localStorage.removeItem('token');
     this.route.navigate(['/login']);
   }
 

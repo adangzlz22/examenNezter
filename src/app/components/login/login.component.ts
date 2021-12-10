@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
               ) { }
 
   ngOnInit(): void {
-    this.isLogged = this.userService.isLogged;
+    const token = localStorage.getItem('token');
+    if(token) this.route.navigate(['/usuarios']);
   }
 
   login(){
@@ -33,8 +34,8 @@ export class LoginComponent implements OnInit {
       console.log('logeado')
       console.log(this.username);
       if (this.username != null) {
-        this.userService.isLogged = true;
-        this.isLogged = this.userService.isLogged;
+        localStorage.setItem('token', 'XASDXX');
+        this.isLogged = true;
         this.route.navigate(['/usuarios']);
       }else{
         this.success = true;

@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/usuarios" *ngIf="isLoged">Usuarios</a>
+          <a class="nav-link" routerLink="/usuarios" *ngIf="isLogged">Usuarios</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -18,7 +18,7 @@
         </li>
       </ul>
       <form class="d-flex">
-      <button class="btn btn-outline-success" type="submit" *ngIf="isLoged==true" (click)="CerrarSesion()">Cerrar Sesion</button>
+      <button class="btn btn-outline-success" type="submit" *ngIf="isLoged==true" (click)="logOut()">Cerrar Sesion</button>
       </form>
     </div>
   </div>

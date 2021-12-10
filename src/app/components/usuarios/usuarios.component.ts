@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { tokenName } from '@angular/compiler';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -39,9 +40,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (!this.userService.isLogged) {
-      this.route.navigate(['/login']);
-    }
+    const token = localStorage.getItem('token');
+    if(!token) this.route.navigate(['/login']);
     this.getUsers();
     this.getStates();
   }
@@ -85,13 +85,14 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       this.states = JSON.parse(result['Model']);
     });
   }
-  
+
   deleteUser(id:string){
     const objModel = {
       idUsuario:id
     };
     this.userService.post('Login/EliminarUsuario',objModel).subscribe( result => {
       this.states = JSON.parse(result['Model']);
+      this.getUsers();
     });
   }
 
