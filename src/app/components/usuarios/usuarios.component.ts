@@ -12,32 +12,19 @@ export class UsuariosComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
   
-
-  constructor(private route: Router,private service: ApiService) { }
+  constructor(private route: Router,private userService: ApiService) { }
 
   ngOnInit(): void {
-    if (this.service.isLogged == false) {
+    if (!this.userService.isLogged) {
       this.route.navigate(['/login']);
     }
-
-    this.dtOptions = {
-      language: {
-        url : '//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'
-      },
-      ajax: 'data/data.json',
-      columns: [{
-        title: 'ID',
-        data: 'id'
-      }, {
-        title: 'First name',
-        data: 'firstName'
-      }, {
-        title: 'Last name',
-        data: 'lastName'
-      }
-    ]
-    };
+    this.getusers();
   }
-
+  getusers(): void{
+    const objModel = {};
+    this.userService.post('Login/ObtenerUsuarios',objModel).subscribe( result=> {
+      console.log(result);
+    });
+  }
 
 }
