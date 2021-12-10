@@ -9,9 +9,8 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-
-  dtOptions: DataTables.Settings = {};
   
+  users = [];
   constructor(private route: Router,private userService: ApiService) { }
 
   ngOnInit(): void {
@@ -20,10 +19,10 @@ export class UsuariosComponent implements OnInit {
     }
     this.getusers();
   }
-  getusers(): void{
+  getusers(): void {
     const objModel = {};
-    this.userService.post('Login/ObtenerUsuarios',objModel).subscribe( result=> {
-      console.log(result);
+    this.userService.post('Login/ObtenerUsuarios',objModel).subscribe( result => {
+      this.users = JSON.parse(result['Model']);
     });
   }
 

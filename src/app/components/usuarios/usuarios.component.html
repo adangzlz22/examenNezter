@@ -10,7 +10,22 @@
         </div>
     </div>
     <br>
-    <table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
+    <table class="table">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Municipio</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Telefono</th>
+        </tr>
+        <tr *ngFor="let user of users">
+          <td>{{user.idUsuario}}</td>
+          <td>{{user.Nombre}}</td>
+          <td>{{user.Municipio}}</td>
+          <td>{{user.Estado}}</td>
+          <td>{{user.Telefono}}</td>
+        </tr>
+      </table>
 
 </div>
 
