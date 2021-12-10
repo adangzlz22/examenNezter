@@ -52,6 +52,9 @@ export class UsuariosComponent implements OnInit {
       this.users = JSON.parse(result['Model']);
     });
   }
+  updateUser(user:any){
+    this.user = user;
+  }
 
   openModal(content:any): void {
     if(!this.user.idUsuario){
@@ -61,14 +64,6 @@ export class UsuariosComponent implements OnInit {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  postUser(): void {
-    const objModel = this.form.value;
-    this.userService.post('Login/CrearUsuario',objModel).subscribe( result => {
-      this.users = JSON.parse(result['Model']);
-      this.getUsers();
     });
   }
 
@@ -113,13 +108,22 @@ export class UsuariosComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-  updateUser(user:any){
-    this.title = 'Update User';
-    const objModel = user;
-    this.userService.post('Login/EditarUsuario',objModel).subscribe( result => {
-      this.states = JSON.parse(result['Model']);
-      this.getUsers();
-    });
+  post(){
+    if(this.user.idUsuario){
+      const objModel = this.form.value;
+      this.userService.post('Login/EditarUsuario',objModel).subscribe( result => {
+        this.states = JSON.parse(result['Model']);
+        this.getUsers();
+      });
+      this.user = {};
+    }else{
+      const objModel = this.form.value;
+      this.userService.post('Login/CrearUsuario',objModel).subscribe( result => {
+        this.users = JSON.parse(result['Model']);
+        this.getUsers();
+      });
+    }
+
   }
 
 }

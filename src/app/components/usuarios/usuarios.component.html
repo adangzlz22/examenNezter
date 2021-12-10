@@ -26,7 +26,7 @@
           <td>{{user.Municipio}}</td>
           <td>{{user.Estado}}</td>
           <td>{{user.Telefono}}</td>
-          <td><button class="btn btn-danger" (click)="updateUser(user.idUsuario);openModal(mymodal)">Editar</button></td>
+          <td><button class="btn btn-danger" (click)="updateUser(user);openModal(mymodal)">Editar</button></td>
           <td><button class="btn btn-danger" (click)="deleteUser(user.idUsuario)">Eliminar</button></td>
         </tr>
       </table>
@@ -39,7 +39,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="form" (ngSubmit)="postUser();modal.close('Save click')" >
+    <form [formGroup]="form" (ngSubmit)="post();modal.close('Save click')" >
     <label for="name">Nombre Completo</label>
     <input type="text" class="form-control" id="name" formControlName="Nombre" aria-describedby="name" placeholder="Enter name" [value]="user?.Nombre">
     <label for="name">Username</label>
