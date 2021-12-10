@@ -85,6 +85,15 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       this.states = JSON.parse(result['Model']);
     });
   }
+  
+  deleteUser(id:string){
+    const objModel = {
+      idUsuario:id
+    };
+    this.userService.post('Login/EliminarUsuario',objModel).subscribe( result => {
+      this.states = JSON.parse(result['Model']);
+    });
+  }
 
   onChange() {
     this.getCities(this.form.get('idEstado')?.value);

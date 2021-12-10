@@ -1,12 +1,11 @@
 <app-navbar></app-navbar>
-
 <div class="container">
     <br>
     <br>
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2">
-            <button class="btn btn-success" data-bs-toggle="mdlAgregar" data-bs-target="#mdlAgregar" >Add Usuario</button>
+            <button class="btn btn-success" (click)="openModal(mymodal)" >Add Usuario</button>
         </div>
     </div>
     <br>
@@ -17,6 +16,8 @@
           <th scope="col">Municipio</th>
           <th scope="col">Estado</th>
           <th scope="col">Telefono</th>
+          <th scope="col">Delete</th>
+
         </tr>
         <tr *ngFor="let user of users">
           <td>{{user.idUsuario}}</td>
@@ -24,14 +25,10 @@
           <td>{{user.Municipio}}</td>
           <td>{{user.Estado}}</td>
           <td>{{user.Telefono}}</td>
+          <td><button class="btn btn-danger" (click)="deleteUser(user.idUsuario)">Eliminar</button></td>
         </tr>
       </table>
-
 </div>
-
-
-<button class="btn btn-lg btn-outline-primary" (click)="openModal(mymodal)">Open My Modal</button>
-   
 <ng-template #mymodal let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">{{typeOfAction}}</h4>
@@ -40,7 +37,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="form" (ngSubmit)="postUser()" >
+    <form [formGroup]="form" (ngSubmit)="postUser();modal.close('Save click')" >
     <label for="name">Nombre Completo</label>
     <input type="text" class="form-control" id="name" formControlName="Nombre" aria-describedby="name" placeholder="Enter name">
     <label for="name">Username</label>
@@ -67,11 +64,10 @@
         <option selected value="2">Two</option>
         <option value="3">Three</option>
       </select>
-    <button type="submit" [disabled]="form.invalid" > Agregar</button>
+      <div class="modal-footer">
+    <button type="submit"  class="btn btn-outline-dark"  [disabled]="form.invalid" > Agregar</button>
+    </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
   </div>
 </ng-template>
 
