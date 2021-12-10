@@ -23,7 +23,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     PassName : new FormControl(''),
     Direccion :new FormControl(''),
     Telefono : new FormControl(''),
-    CodigoPostal :new FormControl(''),
+    CodigoPostal:new FormControl(''),
     TipoUsuario :new FormControl(''),
     idPais : new FormControl(''),
     idEstado : new FormControl(''),
