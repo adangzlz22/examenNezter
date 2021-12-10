@@ -1,6 +1,6 @@
 import { OnDestroy, ViewChild, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { utileriasService } from 'src/app/services/utilerias';
+import { ApiService } from 'src/app/services/api.service';
 import { DataTableDirective } from 'angular-datatables';
 
 @Component({
@@ -13,10 +13,10 @@ export class UsuariosComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   
 
-  constructor(private route: Router,private service: utileriasService) { }
+  constructor(private route: Router,private service: ApiService) { }
 
   ngOnInit(): void {
-    if (this.service.isLoged == false) {
+    if (this.service.isLogged == false) {
       this.route.navigate(['/login']);
     }
 
