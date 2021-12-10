@@ -17,6 +17,7 @@ export class UsuariosComponent implements OnInit {
   users: any = [];
   cities: any = [];
   states: any = [];
+  user: any = {}
 
   subscriptions: Subscription[] = [];
 
@@ -38,9 +39,12 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
-    if(!token) this.route.navigate(['/login']);
-    this.getUsers();
-    this.getStates();
+    if(token){
+      this.getUsers();
+      this.getStates();
+    }else{
+      this.route.navigate(['/login']);
+    }
   }
   getUsers(): void {
     const objModel = {};
@@ -50,6 +54,9 @@ export class UsuariosComponent implements OnInit {
   }
 
   openModal(content:any): void {
+    if(!this.user.idUsuario){
+      this.title = 'Create User'
+    };
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -105,6 +112,14 @@ export class UsuariosComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+  updateUser(user:any){
+    this.title = 'Update User';
+    const objModel = user;
+    this.userService.post('Login/EditarUsuario',objModel).subscribe( result => {
+      this.states = JSON.parse(result['Model']);
+      this.getUsers();
+    });
   }
 
 }

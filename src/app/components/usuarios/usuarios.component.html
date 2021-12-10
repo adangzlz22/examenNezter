@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2">
-            <button class="btn btn-success" (click)="openModal(mymodal)" >Add Usuario</button>
+            <button class="btn btn-success" (click)="addUser()" >Add Usuario</button>
         </div>
     </div>
     <br>
@@ -16,6 +16,7 @@
           <th scope="col">Municipio</th>
           <th scope="col">Estado</th>
           <th scope="col">Telefono</th>
+          <th scope="col">Edit</th>
           <th scope="col">Delete</th>
 
         </tr>
@@ -25,6 +26,7 @@
           <td>{{user.Municipio}}</td>
           <td>{{user.Estado}}</td>
           <td>{{user.Telefono}}</td>
+          <td><button class="btn btn-danger" (click)="updateUser(user)">Editar</button></td>
           <td><button class="btn btn-danger" (click)="deleteUser(user.idUsuario)">Eliminar</button></td>
         </tr>
       </table>
@@ -39,9 +41,9 @@
   <div class="modal-body">
     <form [formGroup]="form" (ngSubmit)="postUser();modal.close('Save click')" >
     <label for="name">Nombre Completo</label>
-    <input type="text" class="form-control" id="name" formControlName="Nombre" aria-describedby="name" placeholder="Enter name">
+    <input type="text" class="form-control" id="name" formControlName="Nombre" aria-describedby="name" placeholder="Enter name" [value]="user?.Nombre">
     <label for="name">Username</label>
-    <input type="text" class="form-control" id="name" formControlName="UserName" aria-describedby="name" placeholder="Enter name">
+    <input type="text" class="form-control" id="name" formControlName="UserName" aria-describedby="name" placeholder="Enter name"  [value]="user?.UserName">
     <label for="city">Estado</label>
     <select class="form-select" aria-label="Default select example" (change)="onChange()"  formControlName="idEstado">
         <option *ngFor="let state of states" [value]="state.value">{{state.text}}</option>
@@ -51,16 +53,16 @@
         <option *ngFor="let city of cities" [value]="city.value">{{city.text}}</option>
     </select>    
     <label for="password">Contrasena</label>
-    <input type="password" class="form-control" id="password"  formControlName="PassName" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="password" class="form-control" id="password"  formControlName="PassName" aria-describedby="emailHelp" [value]="user?.PassName" placeholder="Enter email">
     <label for="phone">Telefono</label>
-    <input type="text" class="form-control" id="phone" formControlName="Telefono" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="text" class="form-control" id="phone" formControlName="Telefono" aria-describedby="emailHelp" [value]="user?.Telefono" placeholder="Enter email">
     <label for="address">Direccion</label>
-    <input type="text" class="form-control" id="address" formControlName="Direccion" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="text" class="form-control" id="address" formControlName="Direccion" aria-describedby="emailHelp" [value]="user?.Direccion" placeholder="Enter email">
     <label for="cp">Codigo Postal</label>
-    <input type="text" class="form-control" id="cp" formControlName="CodigoPostal" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="text" class="form-control" id="cp" formControlName="CodigoPostal" aria-describedby="emailHelp" [value]="user?.CodigoPostal" placeholder="Enter email">
     <input type="hidden" id="idPais" formControlName="idPais" aria-describedby="emailHelp" value="1">
     <label for="userType">Tipo de Usuario</label>
-    <select class="form-select" aria-label="Default select example"  formControlName="TipoUsuario">
+    <select class="form-select" aria-label="Default select example" [value]="user?.TipoUsuario"  formControlName="TipoUsuario">
         <option selected value="2">Two</option>
         <option value="3">Three</option>
       </select>
