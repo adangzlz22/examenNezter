@@ -55,7 +55,17 @@ export class UsuariosComponent implements OnInit {
   updateUser(user:any){
     this.user = user;
     this.form.setValue({
-      Nombre: user.Nombre
+      idUsuario: user.idUsuario,
+      Nombre: user.Nombre,
+      UserName: user.UserName,
+      PassName : user.PassName,
+   Direccion : user.Direccion,
+   Telefono : user.Telefono,
+   CodigoPostal:user.CodigoPostal,
+   idPais : user.idPais,
+   idEstado : user.idEstado,
+   idCiudad : user.idCiudad,
+
    });
   
   }
