@@ -27,7 +27,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     Telefono : new FormControl(''),
     CodigoPostal:new FormControl(''),
     TipoUsuario :new FormControl(''),
-    idPais : new FormControl(''),
+    idPais : new FormControl('1'),
     idEstado : new FormControl(''),
     idCiudad : new FormControl(''),
 
@@ -43,6 +43,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       this.route.navigate(['/login']);
     }
     this.getUsers();
+    this.getStates();
   }
   getUsers(): void {
     const objModel = {};
@@ -61,7 +62,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   postUser(): void {
     const objModel = this.form.value;
-    this.userService.post('Login/ObtenerUsuarios',objModel).subscribe( result => {
+    this.userService.post('Login/CrearUsuario',objModel).subscribe( result => {
       this.users = JSON.parse(result['Model']);
       this.getUsers();
     });
@@ -77,7 +78,9 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   getStates(): void {
-    const objModel = {};
+    const objModel = {
+      idPais:1
+    };
     this.userService.post('Login/cboEstado',objModel).subscribe( result => {
       this.states = JSON.parse(result['Model']);
     });
