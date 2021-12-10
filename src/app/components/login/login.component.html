@@ -1,0 +1,10 @@
+<app-navbar></app-navbar>
+<div class="login-page" *ngIf="isLoged==false">
+    <div class="form">
+        <input type="text" placeholder="username" [(ngModel)]="users"/>
+        <input type="password" placeholder="password" [(ngModel)]="pass"/>
+        <button (click)="logearse()">login</button>
+        <br>
+        <label class="color" for="" *ngIf="mensaje">{{erorr}}</label>
+    </div>
+  </div>
