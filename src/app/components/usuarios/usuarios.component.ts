@@ -14,7 +14,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   typeOfAction = 'Create User';
   closeResult:string = '';
   users: any = [];
-
+  cities: any = [];
   subscriptions: Subscription[] = [];
 
   form = new FormGroup({
@@ -65,6 +65,12 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     });
   }
 
+  getCities(): void {
+    const objModel = {}
+    this.userService.post('Login/cboMunicipio',objModel).subscribe( result => {
+      this.cities = JSON.parse(result['Model']);
+    });
+  }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
