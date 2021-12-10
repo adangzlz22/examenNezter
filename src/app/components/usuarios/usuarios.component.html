@@ -63,11 +63,9 @@
     <input type="text" class="form-control" id="cp" formControlName="CodigoPostal" aria-describedby="emailHelp" placeholder="Enter email">
     <label for="userType">Tipo de Usuario</label>
     <select class="form-select" aria-label="Default select example"  formControlName="TipoUsuario">
-        <option selected value="2">One</option>
-        <option value="3">Two</option>
+        <option selected value="2">Two</option>
+        <option value="3">Three</option>
       </select>
-    <label for="country">Pais</label>
-    <input type="text" class="form-control" id="country"  formControlName="idPais"  aria-describedby="emailHelp" placeholder="Enter email">
     <button type="submit" [disabled]="form.invalid" > Agregar</button>
     </form>
   </div>

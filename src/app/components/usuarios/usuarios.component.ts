@@ -82,6 +82,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       this.states = JSON.parse(result['Model']);
     });
   }
+
   onChange() {
     this.getCities(this.form.get('idEstado')?.value);
   }
