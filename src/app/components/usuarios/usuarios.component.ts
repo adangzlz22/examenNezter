@@ -54,6 +54,10 @@ export class UsuariosComponent implements OnInit {
   }
   updateUser(user:any){
     this.user = user;
+    this.form.setValue({
+      Nombre: user.Nombre
+   });
+  
   }
 
   openModal(content:any): void {
