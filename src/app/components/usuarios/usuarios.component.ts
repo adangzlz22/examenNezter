@@ -17,9 +17,9 @@ export class UsuariosComponent implements OnInit {
     if (!this.userService.isLogged) {
       this.route.navigate(['/login']);
     }
-    this.getusers();
+    this.getUsers();
   }
-  getusers(): void {
+  getUsers(): void {
     const objModel = {};
     this.userService.post('Login/ObtenerUsuarios',objModel).subscribe( result => {
       this.users = JSON.parse(result['Model']);
