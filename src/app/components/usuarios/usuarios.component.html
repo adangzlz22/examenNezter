@@ -49,7 +49,7 @@
         <option *ngFor="let state of states" [value]="state.value">{{state.text}}</option>
     </select>
     <label for="city">Ciudad</label>
-    <select class="form-select" aria-label="Default select example"  formControlName="idCiudad" *ngIf="states.length>0">
+    <select class="form-select" aria-label="Default select example"  formControlName="idCiudad" *ngIf="cities">
         <option *ngFor="let city of cities" [value]="city.value">{{city.text}}</option>
     </select>    
     <label for="password">Contrasena</label>
