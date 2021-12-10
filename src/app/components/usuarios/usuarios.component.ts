@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';  
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,7 @@ import { tokenName } from '@angular/compiler';
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css']
 })
-export class UsuariosComponent implements OnInit, OnDestroy {
+export class UsuariosComponent implements OnInit {
   title = 'Create User';
   typeOfAction = 'Create User';
   closeResult:string = '';
@@ -35,9 +35,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   });
 
   constructor(private route: Router,private userService: ApiService,private modalService: NgbModal ) { }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
