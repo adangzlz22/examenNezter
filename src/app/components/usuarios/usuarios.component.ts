@@ -55,7 +55,6 @@ export class UsuariosComponent implements OnInit {
   updateUser(user:any){
     this.user = user;
     this.form.setValue({
-      idUsuario: user.idUsuario,
       Nombre: user.Nombre,
       UserName: user.UserName,
       PassName : user.PassName,
