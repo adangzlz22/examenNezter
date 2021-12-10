@@ -45,12 +45,14 @@
     <input type="text" class="form-control" id="name" formControlName="Nombre" aria-describedby="name" placeholder="Enter name">
     <label for="name">Username</label>
     <input type="text" class="form-control" id="name" formControlName="UserName" aria-describedby="name" placeholder="Enter name">
+    <label for="city">Estado</label>
+    <select class="form-select" aria-label="Default select example" (change)="onChange($event.target.value)"  formControlName="idEstado">
+        <option *ngFor="let state of states" [value]="state.value">{{state.text}}</option>
+    </select>
     <label for="city">Ciudad</label>
-    <select class="form-select" aria-label="Default select example"  formControlName="idCiudad">
+    <select class="form-select" aria-label="Default select example"  formControlName="idCiudad" *ngIf="states.length>0">
         <option *ngFor="let city of cities" [value]="city.value">{{city.text}}</option>
     </select>    
-    <label for="state">Estado</label>
-    <input type="text" class="form-control" id="state" formControlName="idEstado"  aria-describedby="emailHelp" placeholder="Enter email">
     <label for="password">Contrasena</label>
     <input type="password" class="form-control" id="password"  formControlName="PassName" aria-describedby="emailHelp" placeholder="Enter email">
     <label for="phone">Telefono</label>

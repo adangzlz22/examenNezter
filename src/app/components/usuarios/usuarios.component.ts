@@ -15,6 +15,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   closeResult:string = '';
   users: any = [];
   cities: any = [];
+  states: any = [];
+
   subscriptions: Subscription[] = [];
 
   form = new FormGroup({
@@ -65,12 +67,25 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCities(): void {
-    const objModel = {}
+  getCities(id:any): void {
+    const objModel = {
+      idEstado: id
+    };
     this.userService.post('Login/cboMunicipio',objModel).subscribe( result => {
       this.cities = JSON.parse(result['Model']);
     });
   }
+
+  getStates(): void {
+    const objModel = {};
+    this.userService.post('Login/cboEstado',objModel).subscribe( result => {
+      this.states = JSON.parse(result['Model']);
+    });
+  }
+  onChange(value:any) {
+    this.getCities(value);
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
