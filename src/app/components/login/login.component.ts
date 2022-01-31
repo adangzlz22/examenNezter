@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { utileriasService } from 'src/app/services/utilerias';
+import { ApiService } from 'src/app/services/api.service';
 import { UsuariosComponent } from '../usuarios/usuarios.component';
 
 @Component({
@@ -10,44 +10,39 @@ import { UsuariosComponent } from '../usuarios/usuarios.component';
 })
 export class LoginComponent implements OnInit {
 
-  isLoged = false;
-  users:any='';
-  pass:any='';
-  DatosUsuarios:any;
-  mensaje:any=false;
-  erorr:any='Usurio o contraseña incorrecta.';
+  isLogged = false;
+  username = '';
+  password = '';
+  success = false;
+  error = 'Usuario o contraseña incorrecta.';
   constructor(private route: Router
-              ,private util: utileriasService
+              ,private userService: ApiService
               ) { }
 
   ngOnInit(): void {
-    this.isLoged = this.util.isLoged;
-   
+    const token = localStorage.getItem('token');
+    if(token) this.route.navigate(['/usuarios']);
   }
 
-  logearse(){
-      console.log('logearse click')
-      let objModel = {
-      UserName:this.users,
-      PassName:this.pass
+  login(){
+     const objModel = {
+      UserName:this.username,
+      PassName:this.password
     }
-    console.log(objModel)
-    this.util.Post('Login/Logearse',objModel).then( (result:any)=>{
-      this.DatosUsuarios=JSON.parse(result['Model']);
-
+    this.userService.post('Login/Logearse',objModel).subscribe( result=>{
+      this.username=JSON.parse(result['Model']);
       console.log('logeado')
-      console.log(this.DatosUsuarios);
-      if (this.DatosUsuarios != null) {
-        this.util.isLoged = true;
-        this.isLoged = this.util.isLoged;
+      console.log(this.username);
+      if (this.username != null) {
+        localStorage.setItem('token', 'XASDXX');
+        this.isLogged = true;
         this.route.navigate(['/usuarios']);
       }else{
-        this.mensaje = true;
+        this.success = true;
       }
-
-    }).catch(errr=>{
-      console.log(errr)
-    });    
+    }, err => {
+      console.log(err);
+    });  
   }
 
 

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
-export class TipoPeticionService {
+@Injectable({
+  providedIn: 'root'
+})
+export class QueryTypeService {
 
   public TipoPeticionController = {
     Usuarios : 1,
